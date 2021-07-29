@@ -39,4 +39,24 @@ public class UserService {
 		repo.deleteById(id);
 		System.out.println("deleted");
 	}
+
+	public void findByName(String name) {
+		// TODO Auto-generated method stub
+		System.out.println("inside service find by name");
+		List <User>list=repo.findByName(name);
+		list.forEach(user->System.out.println(user));
+	}
+	
+	public void findByCity(String city) {
+		// TODO Auto-generated method stub
+		System.out.println("inside service find by city");
+		List <User>list=repo.findByCity(city);
+		list.forEach(user->System.out.println(user));
+	}
+	
+	public void getAllUsers()
+	{
+		List <User> list=repo.getAllUser();
+		list.forEach(user->System.out.println(user));
+	}
 }
