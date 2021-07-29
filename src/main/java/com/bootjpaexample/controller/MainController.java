@@ -7,6 +7,7 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.bootjpaexample.entity.User;
 import com.bootjpaexample.services.UserService;
@@ -17,6 +18,18 @@ public class MainController {
 	@Autowired
 	private UserService service;
 	
+	@GetMapping("/saveone")
+	@ResponseBody
+	public String saveUser()
+	{
+		User user= new User();
+		user.setName("sachin");
+		user.setCity("mumbai");
+		user.setStatus("he is cricketer");
+		service.saveUser(user);
+		return "<h1>Success Save</h1>";
+	}
+	
 	@GetMapping("/save")
 	public String userSave()
 	{
@@ -26,7 +39,11 @@ public class MainController {
 		user.setCity("pune");
 		user.setStatus("I am Php programmer");
 		System.out.println(user);
-		List<User> list=new ArrayList<User>();
+		//Save single user to database
+		//service.saveUser(user);
+
+		//Save multiple object at a time
+		List<User> list=new ArrayList<User>();	//created list to store object
 		list.add(user);
 
 		User user2=new User();
@@ -41,6 +58,7 @@ public class MainController {
 		user3.setStatus("I am dotnet programmer");
 		list.add(user3);
 		
+		//three ways to iterate list or Iterator object using while, for loop , forEach method
 		Iterator<User> itr=list.iterator();
 		while(itr.hasNext())
 		{
